@@ -7,15 +7,13 @@ CREATE TABLE customers (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE,
-    phone_number VARCHAR(20)
-);
+    phone_number VARCHAR(20));
 
 CREATE TABLE rooms (
     room_id INT AUTO_INCREMENT PRIMARY KEY,
     room_number VARCHAR(10) NOT NULL,
     room_type VARCHAR(50),
-    price_per_night DECIMAL(10,2) NOT NULL
-);
+    price_per_night DECIMAL(10,2) NOT NULL);
 
 CREATE TABLE bookings (
     booking_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -25,8 +23,7 @@ CREATE TABLE bookings (
     check_out_date DATE NOT NULL,
     status VARCHAR(20),
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
-    FOREIGN KEY (room_id) REFERENCES rooms(room_id)
-);
+    FOREIGN KEY (room_id) REFERENCES rooms(room_id));
 
 CREATE TABLE payments (
     payment_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,8 +31,7 @@ CREATE TABLE payments (
     amount DECIMAL(10,2) NOT NULL,
     payment_date DATE NOT NULL,
     payment_type VARCHAR(50),
-    FOREIGN KEY (booking_id) REFERENCES bookings(booking_id)
-);
+    FOREIGN KEY (booking_id) REFERENCES bookings(booking_id));
 
 CREATE TABLE staff (
     staff_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,8 +39,7 @@ CREATE TABLE staff (
     last_name VARCHAR(50) NOT NULL,
     sex VARCHAR(10),
     customer_id INT,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
-);
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id));
 
 
 select *
