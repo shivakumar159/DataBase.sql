@@ -1,3 +1,5 @@
+
+
 create DATABASE GISMA_ECOMMERCE
 
 #Hotel Reservation System: Manage rooms, customers, bookings, and payments.
@@ -49,6 +51,8 @@ create table staff (
 select *
 from customers c 
 
+    **INSERTING RECORDS IN TO CUSTOMERS TABLE**
+    
 insert into customers (first_name, last_name, email, phone_number)
 values 
 ("Luca", "Muller", "Lucller123@gmail.com", "15567403322"),
@@ -72,7 +76,7 @@ select *
 from rooms r 
 
 
-#ALTER TABLE (ADDING NEW ROW IN TABLE)
+**#ALTER TABLE (ADDING NEW ROW IN TABLE)**
 
 alter table rooms
 add room_floor int;
@@ -81,6 +85,8 @@ add room_floor int;
 select *
 from rooms r 
 
+    **INSERTING RECORDS INTO ROOMS TABLE**
+    
 insert into  rooms  (room_number, room_type, price_per_night, room_floor)
 values  
 ("101", "AC", "209.50", "1"),
@@ -104,6 +110,8 @@ from rooms r
 select *
 from bookings b 
 
+    **INSERTING RECORDS INTO BOOKING TABLE**
+    
 insert into  bookings (customer_id, room_id, check_in_date, check_out_date, status)
 values  
 (1, 2, "2026-06-06", "2026-06-08", "BOOKED"),
@@ -132,6 +140,8 @@ where booking_id between 7 and  12;
 select *
 from bookings b 
 
+    **INSERTING RECORDS INTO BOOINGS TABLE**
+    
 insert into bookings (customer_id, room_id, check_in_date, check_out_date, status)
 values 
 (1, 2, "2026-06-06", "2026-06-08", "BOOKED"),
@@ -151,7 +161,8 @@ from payments p
 select *
 from bookings b 
 
-
+** UPDATING RECORDS INTO BOOKING TABLE**
+    
 update bookings set customer_id = 1, room_id = 1 where booking_id = 13;
 update bookings set customer_id = 5, room_id = 2 where booking_id = 14;
 update bookings set customer_id = 3, room_id = 3 where booking_id = 15;
@@ -173,6 +184,8 @@ from rooms
 select *
 from payments p 
 
+    **INSERTING RECORDS INTO PAYMENTS TABLE**
+    
 insert into payments (booking_id, amount, payment_date, payment_type)
 values 
 (13, 419.00, "2026-06-08", "Master-card"),
@@ -195,6 +208,8 @@ from payments p
 select *
 from staff s 
 
+    **INSERTING RECORDS INTO STAFF TABLE**
+    
 insert into staff  (first_name, last_name, sex, customer_id)
 values 
 ("Nuno", "Robisco", "M", 1),
@@ -211,6 +226,7 @@ values
 ("piot", "puliq", "M", 3),
 ("klara", "lukee", "F", 4);
 
+
 update staff s  set customer_id = 9 where s.staff_id = 9;
 update staff s  set customer_id = 10 where s.staff_id = 10;
 
@@ -218,7 +234,7 @@ select *
 from staff s 
 
 
-#LIMIT
+**#LIMIT**
 
 select *
 from rooms
@@ -228,14 +244,14 @@ select *
 from rooms r 
 
 
-#DISTINCT
+**#DISTINCT**
 
 select distinct STAFF_ID
 from staff s 
 
 
 
-#ORDER BY (DESC & ASC)
+**#ORDER BY (DESC & ASC)**
 
 select *
 from payments p
@@ -246,13 +262,13 @@ from rooms r
 order by price_per_night asc 
 
 
-#count
+**#count**
 
 select count(amount)
 from payments p 
 
 
-#SUM
+**#SUM**
 
 select SUM(amount)
 from payments p 
@@ -263,14 +279,14 @@ from rooms r
 where room_type = "non-ac";
 
 
-#AVERAGE (AVG)
+**#AVERAGE (AVG)**
 
 select AVG(AMOUNT)
 from payments p 
 where p.payment_type = "visa-card";
 
 
-#LIKE (%, -)
+**#LIKE (%, -)**
 
 select *
 from staff s 
@@ -281,11 +297,7 @@ from customers c
 where c.last_name like "%n%";
 
 
-
-
-
-
-#Group By
+**#Group By**
 
 select status, COUNT(*) as total_bookings
 from bookings
@@ -302,7 +314,7 @@ group by payment_type;
 
 
 
-# join and Group By
+**#join and Group By**
 
 select r.room_type, SUM(p.amount) as total_revenue
 from payments p
@@ -311,7 +323,7 @@ join rooms r as b.room_id = r.room_id
 group by r.room_type;
 
 
-#inner join
+**#inner join**
 
 select b.booking_id, c.first_name, c.last_name, b.check_in_date, b.check_out_date
 FROM bookings b
@@ -323,12 +335,12 @@ inner join customers c on b.customer_id = c.customer_id;
 
 
 
-#left join
+**#left join**
 select c.customer_id, c.first_name, c.last_name, b.booking_id
 from customers c
 left join bookings b on c.customer_id = b.customer_id;
   
-# Right Join
+**# Right Join**
 select s.staff_id, s.first_name,s.last_name, p.payment_id, p.amount
 from payments p
 right join bookings b on p.booking_id = b.booking_id
@@ -338,7 +350,7 @@ right join staff s on b.customer_id = s.customer_id;
 select *
 from staff s 
 
-#ERD Assignment payments with customer names
+**#ERD Assignment payments with customer names**
 
 select  p.payment_id, c.first_name, c.last_name, p.amount, p.payment_date,p.payment_type
 from payments p
