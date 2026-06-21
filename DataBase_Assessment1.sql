@@ -1,6 +1,6 @@
 
 
-create DATABASE GISMA_ECOMMERCE
+create DATABASE GISMA_ASSESSMENT
 
 #Hotel Reservation System: Manage rooms, customers, bookings, and payments.
 
